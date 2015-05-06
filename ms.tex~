@@ -1,0 +1,1561 @@
+\documentclass[useAMS,usenatbib]{mn2e} 
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{epsfig}
+\usepackage{times}
+\usepackage{natbib}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsbsy}
+\usepackage[T1]{fontenc} 
+% If your system has the AMS fonts version 2.0 installed, MN.sty can be
+% made to use them by uncommenting the line: %\AMStwofontstrue
+%
+% By doing this, you will be able to obtain upright Greek characters.
+% e.g. \umu, \upi etc.  See the section on 'Upright Greek characters' in
+% this guide for further information.
+%
+% If you are using AMS 2.0 fonts, bold math letters/symbols are availableF
+% at a larger range of sizes for NFSS release 1 and 2 (using \boldmath or
+% preferably \bmath).
+%\newcommand{\bhl}{\bf}
+%\newcommand{\ehl}{\rm}
+
+\newcommand{\bhl}{}
+\newcommand{\ehl}{}
+\newcommand{\bhm}{}
+\newcommand{\ehm}{}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\rd}{{\rm d}}
+
+\newif\ifAMStwofonts
+%\AMStwofontstrue
+
+%%%%% AUTHORS - PLACE YOUR OWN MACROS HERE %%%%%
+\def\rin{$r_{\rm in}$}
+\def\rout{$r_{\rm out}$}
+\def\rc{$r_{\rm c}$}
+\def\del2r{$\Delta r_{\rm 2}$}
+\def\delr{$\Delta r$}
+\def\fbl{$\mathcal{F}_{\rm BL}$}
+\def\fflow{$\mathcal{F}_{\rm flow}$}
+\def\ddr{\frac{\partial}{\partial r}}
+\def\ddt{\frac{\partial}{\partial t}}
+\def\f{f}
+\def\aap{A\&A}
+\def\apj{ApJ}
+\def\aapr{A\&A Rev.}
+\def\apjl{ApJ}
+\def\mnras{MNRAS}
+\def\araa{ARA\&A}
+\def\aj{AJ}
+\def\qjras{QJRAS}
+\def\physrep{Phys. Rep.}
+\def\nat{Nature}
+\def\nar{New Astron. Rev.}
+\def\aaps{A\&A Supp.}
+\def\apss{Ap\&SS}  
+\def\planss{P\&SS} 
+\def\apjs{ApJS}
+\def\pra{Phys. Rev. A}
+\def\prb{Phys. Rev. B}
+\def\prc{Phys. Rev. B}
+\def\prd{Phys. Rev. D}
+\def\pasp{Publ. Astr. Soc. Pac.}
+\def\jcp{J. Chem. Phys.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{The radiative efficiency of a Radiatively Inefficient Accretion Flow}
+\author[Caroline R.\ D'Angelo et al.]
+       {C.\ R.\ D'Angelo, A.\ Patruno, J.\ K.\ Fridriksson, C. Messenger}
+\date{\today}
+
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+\pubyear{2014}
+
+\begin{document}
+
+\maketitle
+\label{firstpage}
+\begin{abstract}
+  The recent $NuStar$ observation of a high-energy cutoff at around 10
+  keV in the X-ray spectrum of the quiescent accreting neutron star
+  Cen X-4 ($L_{\rm x} \sim 10^{33}$ ergs/s) provides a direct strong
+  constraint on the temperature and other properties of the emitting
+  gas. As reported in Chakrabarty et al. 2014, the relatively soft
+  cutoff combined with the hard power-law index (of $\Gamma \sim 1.5$)
+  suggests bremsstrahlung emission rather than Comptonization is the
+  dominant emission mechanism. However, we demonstrate in this paper,
+  the large number density of hot electrons combined with the
+  near-balance between thermal and non-thermal components implies that
+  the non-thermal emission is produced in a boundary layer near the
+  stellar surface rather than in the accretion flow itself. Given that
+  10-70\% of the accretion flow energy is predicted to be released in
+  a boundary layer, the non-detection of the accretion flow provides
+  the first direct evidence that this flow is indeed
+  `radiatively-inefficient' i.e most of the gravitational potential
+  energy released by the flow before it hits the star is not emitted
+  as radiation. We set constraints on the radiative inefficiency of
+  the flow for different assumptions for the magnetic field of the
+  star (which, if present, clears the inner regions near the star and
+  could decrease the overal radiative efficiency), and make predictions for
+  the spectrum of systems with both a detectable RIAF and bright
+  central object. 
+\end{abstract}
+\begin{keywords}
+accretion, accretion discs -- MHD -- stars:
+-- stars: magnetic fields --
+stars:rotation
+\end{keywords}
+
+\section{Introduction}
+
+It is still not established how accretion flows organize themselves at
+the very low luminosities observed in many accreting black hole and
+neutron star systems. When these sources are much brighter (near the
+Eddington luminosity; $L_{\rm Edd} \equiv 4\pi GM m_{\rm p}
+c/\sigma_{\rm T} = 1.3\times10^{38} (M/M_\odot) {\rm erg\;s}^{-1}$)
+their energy spectrum is dominated by a blackbody that peaks in the
+hard UV (for supermassive black holes) or soft X-rays (for galactic
+black holes and neutron stars), which is interpreted to be an
+optically thick gas disc (as predicted by [Shakura \& Sunyaev, Pringle
+\& Rees, Thorne \& ?]). As the luminosity declines however, the energy
+spectrum evolves into a hard X-ray power law, indicating it is emitted
+by optically thin gas $\sim$1000 times hotter than what the classic
+`thin disc' \citep{1973A&A....24..337S} solution would predict for the
+observed luminosity. The precise physical origin of this component is
+still not clear.
+
+More than 30 years ago, [Rees et al., 1982] proposed that this
+spectral change could be caused by a radical change in the accretion
+flow's structure below a critical accretion rate whereby the accretion
+flow would inflate vertically from a cool dense thin disc into a much
+hotter, optically thin torus. As a result, the accretion flow would
+become {\it radiatively inefficient}, meaning that a large fraction of
+the energy liberated by accretion is not radiated away but instead
+converted into some other form of energy (such as kinetic or internal
+potential energy).  This is an important distinction from the standard
+thin-disc solution, where the accretion energy is efficiently radiated
+away from the disc as it accretes. Radiative inefficiency implies that
+the accretion rate in such a flow could be orders of magnitude higher
+than if the flow were radiatively efficient. [significance of this?
+Why does this matter?]
+
+Unfortunately it is not straightforward to build a self-consistent
+dynamic model for how a radiatively-inefficient accretion flow
+(hereafter RIAF) actually works. The large scaleheight of the flow
+allows the potential for large-scale radial and vertical gas motions,
+which can correspond to large-scale energy and momentum
+transport. This large-scale transport cannot happen in the standard
+`thin-disc' solution, since it by definition assumes that the orbital
+velocity is nearly Keplerian and radial and vertical velocities are
+much smaller. The uncertainty over energy transport relates closely to
+another major unsolved question: Given that the ultimate source of
+energy is the gravitational potential of the central object, and that
+all of the gas must liberate this energy in order to accrete at all,
+another major question is also: where does the `missing'
+(i.e. non-radiated) energy go?
+
+Since the early 1990's there has been considerable theoretical
+interest in RIAF solutions, with several main proposals. The most
+well-known one, the `Advection-Dominated Accretion Flow' (ADAF)
+solution [CITE Narayan \& Yi], assumes that the accretion flow becomes
+so tenuous that the electrons and ions are no longer collisionally
+coupled. Turbulent viscosity heats the gas, but since the ions mainly
+cool via collisions, the ion gas temperature can rise to its virial
+temperature ($\sim 10-100~{\rm MeV}$). Gravitational potential energy is
+thus efficiently converted into internal potential energy of the ions,
+which is then advected inwards and disappears into the black
+hole. 
+
+Other solutions focus on reducing the net accretion rate into the
+deepest part of the potential well near the central object. One
+popular set of solutions assumes that most of the energy liberated close to
+the central object is advected outward and used to launch an large
+outflow of gas far from the central potential, so that the net
+accretion rate decreases strongly closer to the star BEGELMANN.  It
+has also been suggested that the flow could become
+'convection'-dominated (with large-scale vertical or radial convection
+cells and a small net accretion rate inward) CITE, or
+'magnetically'-dominated (in which poloidal magnetic field is advected
+inward from large distances and creates a magnetic barrier against
+accretion) [CITE].
+
+Observationally, there is some evidence that RIAFs exist. For example,
+at the centre of our our galaxy, gas from [WHAT??] is observed to fall
+towards Sgr A* at a rate of xxx, yet the maximum observed luminosity
+for Sgr A* is only xxx. Recently, Wang et al. (2014) presented
+evidence that xxx much less efficient. [model dependent??]
+
+Proof of radiative inefficiency is typically indirect: the
+inflow rate of gas is measured at a much larger distances than where
+most of the accretion energy is liberated. The
+`radiatively-inefficient' part of the flow only exists close to the
+star (in the inner $\sim 1000 R_g$, where $R_g \equiv GM_*/c^2 = xxx $
+is the gravitational radius and $M_*$ is the mass of the central
+object). The extremely small size scale, low luminosity and high
+energy of the emission all mean that the amount of information about
+the innermost regions of the flow itself is inevitably very limited,
+while the large distance between the outer edge of the accretion flow
+and the innermost regions is essentially undetectable. This leaves
+open the possibility that the gas flow is disrupted in this
+intermediate region, and the innermost part of the accretion flow may
+not, after all, be radiatively inefficient. Theoretical studies of
+RIAFs have generally focused on building self-similar dynamical
+solutions [precise, concise definition of self-similar] and have not
+not paid much attention to what will happen at the innermost boundary
+of the flow, where it interacts with the central compact object. This
+is in line with observational work, which has mainly focused on black
+hole systems, in which all the gas ultimately ends up inside the hole
+and does not radiate.
+
+% \begin{itemize}
+% \item{{\bf WORK INTO TEXT}`Radiative efficiency' means efficiency with which
+%     grav. pot. energy is radiated away. In an optically thick disk,
+%     energy is radiated locally, efficiency depends on location of
+%     inner edge of accretion disk: the deeper the well the more
+%     efficient the radiation. In an optically thin disk this isn't
+%     clear. In particular, if density drops sufficiently, get a
+%     two-temperature plasma and most of the accretion energy is stored
+%     in protons w/ temperatures c. 20MeV (ADAF/similar class of
+%     solutions). Can't assume local energy balance: can get large-scale
+%     energy transport in disk (cf. ADIOS model, where most energy is
+%     transported to very large radii to launch powerful outflows)}
+% \end{itemize}
+
+However, many neutron stars in accreting binary systems show similar
+spectral and variability properties as black holes (suggesting similar
+accretion physics is at work), but here the interaction between the
+accretion flow and surface layer is very important. Accreting gas will
+release 10-70\% of its total gravitational potential energy in a
+boundary layer as it settles onto the star. In most circumstances this
+final fall will be radiatively efficient, so that the luminosity from
+the stellar surface should be a good proxy (to within a factor of a
+few) for the accretion rate onto the star and hence in the inner parts
+of the accretion flow. [cite]
+
+%  Accreting neutron stars often also
+% have detectable magnetic fields, as seen by pulsed emission at the
+% stellar spin frequency. The strong magnetic field controls the motion
+% of the flow in the regions close to the star, so that the inner
+% accretion flow is truncated some distance from the star, and gas is
+% channelled onto the star along field lines, producing hot spots at the
+% magnetic poles of the star and consequently pulsations as the hot
+% spots rotate with the star.
+
+If the uncertainties in the neutron star's properties (such as spin,
+size and magnetic field) can be constrained, the luminosity of the
+boundary layer could offer insights on the accretion flow's
+properties. For example: if the majority of the accretion energy is
+advected inwards (ADAF) rather than used to expel gas, the surface of
+the neutron star will be much brighter {begelmann blandford}. Indeed,
+the relative brightness of neutron star transients compared with black
+holes has been used as evidence of the existence of both an event
+horizon {narayan} and an ADAF {done and gierlinski}.
+
+All the same, comparing relative luminosities of neutron stars and
+black holes is a somewhat weak argument for the existence of RIAFs,
+since the mean accretion rate {\it into} the RIAF is essentially
+impossible to determine and even the mean mass transfer rate from the
+secondary companion can be uncertain up to an order of magnitude. This
+has led to some contradictory results: for example {Done \&
+  Gierlinski} , {others?} argued that the spectrum of xxxxxx is
+consistent with an ADAF model, while {Menou \& McClintock} fit another
+neutron star binary, Centaurus X-4, with an ADAF spectral model and
+found a large discrepency between the accretion rate onto the star and
+the predicted accretion rate from the ADAF model.
+
+% The presence of a magnetic field further complicates the situation,
+% although in a somewhat predictable way. Since the magnetic field of
+% the star interacts directly with the flow, the different rotation
+% rates allow angular momentum exchange between the Keplerian (or nearly
+% Keplerian) accretion flow and the field lines (which rotate with the
+% star). This leads to two distinct regimes, depending on whether the
+% star rotates faster or slower than the inner edge of the accretion
+% flow. If the star rotates more slowly than the flow, the interaction
+% between the field and disc will add angular momentum to the star and
+% allow accretion to proceed. If on the other hand the star is spinning
+% faster than the inner part of the flow, the magnetic field will create a
+% centrifugal barrier that inhibits accretion onto the star. This is
+% often known as the `propeller' regime, since the magnetic field is
+% assumed to expel gas at the inner edge of the flow and spin down the
+% star. The point at which the two spin rates are equal is the
+% `co-rotation radius' ($r_{\rm corot} \equiv (GM_*/\Omega_*^2)^{1/3}$;
+% $M_*$ and $\Omega_*$ are the stellar mass and spin frequency), and
+% this radius marks the transition point between accretion and propeller
+% regimes.
+
+% {\tt no need for this twice...}
+% Recent work has pointed out that a centrifugal barrier that inhibits
+% accretion does not necessarily result in a strong outflow [ST93,
+% DS10/DS12]. Instead the angular momentum added by the field/flow
+% interaction can be viscously transported outward, which changes the
+% density structure of the flow [cite] and reduce the accretion rate
+% onto the star. The inner edge of the disc will then become `stuck'
+% near the co-rotation radius, and accretion onto the star can continue
+% down to arbitrarily low accretion rates so that the disk never moves
+% to the propeller regime [DS11]. While all work on accretion
+% flow-magnetic field interactions has focused on high density thin
+% accretion discs, many of the results should also apply to RIAFs
+% (although investigating how a RIAF will interact with a magnetic field
+% is an interesting and unconsidered problem which may lead to further
+% observational constraints on the nature of the flow). {\tt two ideas
+%   here: explan dead disk explicitly?}
+
+% How will the central magnetic field affect the observed luminosity of
+% the flow? First, the field will truncate the accretion flow before it
+% reaches the deepest part of the potential well. This will reduce the
+% amount of gravitational potential energy that the flow liberates
+% before it finally falls onto the star, and so reduce the amount of
+% energy available for radiating or driving an outflow{\footnote {The
+%   interaction between the magnetic field and the flow will add some
+%   amount of energy to the flow, of order xxx, which is disregarded in
+%   this work}. Thus, compared to an unmagnetized neutron star, one with
+% a strong magnetic field should have more luminosity coming from the
+% surface of the star (which we assume to radiate efficiently) and less
+% coming from the accretion flow itself. If it exists, a magnetic
+% `propeller' in contrast will increase the radiative contribution of
+% the flow versus a boundary layer, since in this scenario little or no
+% gas actually hits the star. If instead the flow stays truncated near
+% the co-rotation radius and gas continues to hit the surface of the
+% star even at very low accretion rates (the `dead disc' picture
+% suggested by [cite]), the radiative efficiency will increase compared
+% to the same accretion rate in a black hole.
+
+Observationally, a major challenge in constraining RIAF models has
+been to constrain the physical properties of the hard X-ray
+non-thermal component of the energy spectrum beyond fitting it with a
+power law. This is due in large part to the low photon flux from many
+sources and reduced sensitivity of X-ray instruments above $\sim$10
+keV. Of particular interest is constraining the turnover in the
+powerlaw spectrum at high energies, which can put strong constraints
+on the energy distribution and dominant emission mechanism of the
+radiating gas. New X-ray missions such as {\it NuSTAR} have been
+designed with unprecedented sensitivity at high X-ray energies and
+will give the opportunity to answer some of these questions. {\tt This
+  is still kind of fuzzy, is this exactly what I want to say?}
+
+%  Optically-thin high
+% temperature gas generically produces a power-law energy spectrum
+% (especially given the limited sensitivity of X-ray telescopes) , with
+% different indices and high energy cutoffs for different radiative
+% mechanisms (e.g. free-free [Bremsstrahlung] emission versus inverse
+% componization) and gas properties (temperature, density, particle
+% energy distribution). X-ray observatories have much less sensitivity
+% at high X-ray energies, which has historially made many physical
+% models indistinguishable. For example, without detecting any spectral
+% turnover at high energies, a very hard power-law X-ray spectrum can be
+% equally well fit with a model assuming Bremsstrahlung emission from
+% relatively low density and high temperature gas or Inverse Compton
+% scattering from gas of a higher density and lower temperature (as was
+% demonstrated in the fits presented in Chakrabarty+2014). If the
+% dominant radiation mechanism is inverse Compton scattering of seed
+% photons through a hot plasma, the power-law index will depend on the
+% Compton `y' parameter, which has a degeneracy between optical depth
+% and temperature. This degeneracy can only be broken by detecting a
+% high-energy cutoff in the spectrum, which indicates the temperature of
+% the seed photons. {\tt d/n really discuss energy distribution of seed
+%   photons...} An increased sensitivity in high X-ray bands will thus
+% add much-needed spectral information that can help constrain the
+% physics operating in the flow.
+Recently, the detection of a high-energy X-ray cutoff in hard X-ray
+spectrum of the quiescent neutron star binary Cen X-4 (X1455-214) was
+reported by [Chakrabarty+]. This observation presented an excellent
+chance to put constraints on the non-thermal gas and potentially test
+ideas of radiative efficiency outlined above. Cen X-4 is the brightest
+`quiescent' neutron star binary in the sky, with an distance of only
+1.2-1.4 kpc [Chevalier, kuulkers, Gonzalez-Hernandez] and a mean
+luminosity of around $10^{31}-10^{32}$ ergs/s (6-7 orders of magnitude
+less than $L_{\rm Edd}$) [cite]. The source is strongly variable, with
+X-ray variability by a factor two over a matter of minutes
+[Chakrabarty], and up to more than an order of magnitude over several
+days [Bernardini]. The X-ray spectrum shows two distinct components, a
+thermal component with a temperature of around 0.08 keV (ascribed to
+the neutron star surface) and a power law tail (of unknown origin)
+with an index that varies between $\Gamma \sim 1-2$. Both components
+make up roughly equal contributions to the spectrum, and co-vary on
+timescales of at least 110s [Bernardini].
+
+In their January 2013 observation, [Chakrabarty+] found evidence of a
+break or cutoff in the hard X-rays around 10 keV, while the index of
+the power-law component below 10keV was quite hard: $\Gamma =
+1.4$. They considered different radiation processes and physical
+scenarios for the high energy emission, before concluding that the
+spectrum was most likely produced by bremsstrahlung radiation from a
+hot massive outflow at a large distance from the star, roughly as
+predicted the model suggested by [begelmann and blandford]. 
+
+However, there are several problems with this suggested scenario,
+which we discuss in detail in this paper. The first one is an
+energetic inconsistency: the amount of energy required to power the
+outflowing accretion flow proposed by Chakrabarty+2014 is several
+times larger than is available by the proposed accretion rate.  The
+second is that the thermal and non-thermal components vary together on
+timescales as short as $\sim 100{\rm s}$, which is much shorter than
+the time it takes the gas from the outer regions to accrete onto the
+surface where the thermal emission originates. 
+
+In this paper, we refit and reinterpret the observed X-ray spectrum
+and demonstrate that the power-law component is most plausibly
+produced by bremsstrahlung emission from the boundary layer on the
+surface of the star. This means that all the observed emission is
+coming from near the surface of the star, and the non-thermal and
+thermal components are coupled both radiatively and through particle
+exchange. Most significantly, if all the emission is coming from the
+stellar surface, this implies that the flow itself is completely
+undetected, i.e. it is indeed radiatively inefficient. This is the
+first direct, model-independent evidence for radiative inefficiency in
+any accreting system.
+
+The paper is organized as follows. In Section \ref{sec:models} we
+review how much emission is expected to come from a neutron star
+boundary layer and accretion flow, and how the neutron star's size,
+spin and magnetic field can affect this balance. In Section
+\ref{sec:CenX4} we discuss the observed history of Cen X-4, and
+present the results of a search for pulsations that would indicate the
+presence of a magnetic field.  In Section \ref{sec:phys_proc} we
+re-investigate the model proposed by [Chakrabarty] and explain why it
+is not energetically plausible. We then investigate different options
+to explain the spectrum, including Inverse Compton scattering and
+bremsstrahlung from both the stellar surface boundary layer and the
+accretion flow, and conclude that the only plausible model is
+bremsstrahlung from the surface layers. We also set rough limits on
+the scale height and density of the boundary layer; a more complete
+analysis of the physical constraints imposed by this observation and
+others will follow in a separate paper. Finally, in section
+\ref{sec:RIAF} we calculate upper limits for the radiative
+inefficiency of the accretion flow, and discuss briefly how future
+observations of low-level accretion onto neutron stars can be used to
+put better constraints on the radiative efficiency of the accretion
+flow.
+
+\section{How accretion energy is liberated in neutron stars}
+\label{sec:models}
+
+What fraction of the gravitational potential energy from accretion
+will be liberated in the boundary layer of the neutron star?  This
+question is central to the argument of this paper: to put constraints
+on the radiative efficiency of the accretion flow we need to know how
+bright we expect it to be relative to the emission from the
+boundary layer. The total rate of gravitational potential energy released by
+matter accreting onto a star is:
+\begin{equation}
+\dot{E}_{\rm pot} = \frac{GM_*\dot{M}}{R_*},
+\end{equation}
+divided into energy released in the flow, \fflow and the boundary
+layer \fbl. In the absence of other physical considerations about the
+central object, \fbl$\simeq$\fflow$\simeq 0.5$. However, this balance
+can be altered by the neutron star's size, spin and magnetic field,
+although in general (and for Cen X-4 in particular) we expect these
+effects to be small. Below we review the effects of each of these
+properties and its implication for the energetic release in the
+boundary layer and accretion flow.
+
+% The
+% central argument of this paper is that the observed X-ray luminosity
+% from Cen X-4 is generated close to the surface of the star, and that
+% the accretion flow itself is not detected, implying that the accretion
+% flow is radiatively inefficient. This argument hinges on two points:
+% the first that the properties of the X-ray spectrum are most plausibly
+% explained by emission from the stellar surface (which we argue in
+% section \ref{sec:phys_proc}), the second that the non-detection of the
+% accretion flow is evidence of radiative inefficiency. This second
+% point requires understanding where the gravitational potential energy
+% is liberated in a neutron star binary system: namely, what fraction is
+% released in the accretion flow versus a boundary layer on the star. 
+% In
+% a large, non-magnetic, non-spinning neutron star, the total
+% gravitational potential energy ($GM_*\dot{M}/R$) will be divided
+% equally between the boundary layer/surface of the star and the
+% accretion disc.  This balance can be altered by several properties of
+% the neutron star: its size, spin rate and magnetic field.  In general
+% these effects tend to reduce the brightness of the accretion flow in
+% comparison with the stellar surface (with the exception of a strong
+% magnetocentrifugally-driven outflow). However, for realistic neutron
+% stars, the amount of energy released at the surface and in the
+% accretion flow should be within a factor of a few of each other. This
+% implies that a non-detection of the accretion flow indicates the flow
+% itself is radiatively inefficient.
+
+\subsection{Neutron star size}
+In the absence of the magnetic field, the accretion flow will extend
+close to the neutron star's surface and the effects of General
+Relativity will become important. This has been discussed in some
+detail first by Shakura \& Sunyaev (1986) (who dealt chiefly with
+non-spinning neutron stars) and more recently in papers by xxxxxx who
+consider a spinning neutron star. 
+
+The main point is that the neutron star radius can be smaller than the
+innermost stable circular orbit -- the smallest radius for which bound
+orbits exist in a Schwarzchild metric, $R_* < R_{\rm isco} = 6R_{\rm g}$,
+where $R_{\rm g}$ is the gravitational radius of the neutron
+star. Inside this orbit the gas will be decoupled from the rest of the
+accretion flow and hence stop radiating away gravitational
+energy. Shakura\&Sunyaev calculated the energy released in the flow
+and the boundary layer in a Schwarzchild metric. Expressed as first
+order corrections to the Newtonian energy release, the fraction of
+energy from the boundary layer and flow will be:
+
+\begin{eqnarray}
+\mathcal{F}_{\rm bl} &=& 0.5 \left(1 + \frac{R_{\rm} g}{R_{*}}\right)\\
+\nonumber \mathcal{F}_{\rm flow} &=& 0.5 \left(1 - \frac{R_{\rm
+      g}}{2R_*}\right).
+\end{eqnarray}
+
+The uncertainty in the neutron star equation of state means this
+number is uncertain, but even over the whole range of possible
+equations of state (from consulting e.g. fig. xx of Lattimer \&
+PRakash 2001) this effect will be very small even for a $2M_\odot$
+star (where the effect is largest): \beq 1.3 \leq \frac{\mathcal{F}_{\rm
+    bl}}{\mathcal{F}_{\rm flow}} \leq 1.5 \eeq and $\mathcal{F}_{\rm
+  bl}/\mathcal{F}_{\rm flow} < 1.3 $ for a $1.5 M_\odot$ star. A rapidly
+spinning star will distort space time near the stellar surface and
+reduce $r_{\rm isco}$, but this effect will just reduce the imbalance
+between \fbl and \fflow. Even for a very small neutron star, a large
+fraction of energy will be released in the flow. 
+
+\subsection{Spinning near break-up}
+If the star is relatively large (so the inner edge of the disc reaches
+the stellar surface) and rapidly spinning, the spin will also
+influence the relative contribution from the disc and the magnetic
+field [popham narayan; paczynski]. As the star approaches its break-up
+frequency (2170 Hz for a $1.4M_\odot$, $10{\rm km}R_*$ neutron star),
+the inner boundary of the disc must transport stellar angular momentum
+outward from the star in order for accretion to continue (this is
+known as a `maximally-torqued' inner boundary condition). This
+increases the amount of radiation from the flow to \fbl = 0.75 and
+decreases the stellar contribution (cite paczynski, popham \&
+narayan).  The fraction of energy from the boundary layer will be:
+
+\begin{equation}
+  \mathcal{F}_{\rm BL} = \frac{1}{2}\left(1-\frac{\Omega_*}{\Omega_K(R_*)}\right)^2.
+\end{equation}
+
+Although this could in principle considerably reduce radiation from
+the boundary layer of the star, the fastest confirmed millisecond
+pulsar has a spin frequency of 716 Hz, so that the boundary layer
+luminosity will only be reduced by about a factor 2 compared with a
+non-spinning star. The spin frequency of a neutron star is believed to
+be limited by gravitational wave emission above $\sim1000$Hz [cite],
+so the effect of spin rate will probably not influence the
+surface/disc luminosity balance more than a factor of $\sim$2. If Cen
+X-4 has a millisecond spin frequency and is non-magnetic, less energy
+will be released in the boundary layer than the accretion flow,
+increasing the radiative inefficiency of the flow.
+
+\subsection{Magnetospheric effects}
+The largest potential influence on the surface/accretion flow energy
+balance will come from a strong stellar magnetic field that truncates
+the inner part of the accretion flow and channels accreting material
+onto the stellar surface. This has two main effects: first, since the
+inner edge of the flow is now much further from the star, the amount
+of energy released in the flow will be smaller by a factor of $R_{\rm
+  in}/R_{*}$. Secondly, if the star is spinning very rapidly and the
+truncation radius is sufficiently far from the star, the magnetic
+field/accretion-flow interaction may be able to drive an outflow (the
+``propeller'' effect; Illarionov \& Sunyaev) and reduce the amount of
+accretion onto the neutron star's surface, which could dramatically
+reduce the luminosity of the system. As we show below, however, the
+propeller effect may not often occur, while the lack of detected
+pulsations (\ref{sec:CenX4}) suggest it is unlikely to be operating in Cen X-4.
+
+The inner edge of the accretion flow can be defined as the point where
+the magnetic field is strong enough to enforce co-rotation of gas
+(CITE ST93):
+\begin{eqnarray}
+\label{eq:rm}
+r_{\rm m}\!\!\!\! &=&\!\!\! \mu^{2/5} (4\Omega_*\dot{M})^{-1/5}\\
+\nonumber\!\!\!\!&=&\!\!\! 2.3\times10^6 \!\left(\frac{B}{10^8\rm{~G}}\right)^{2/5}\!\!\!\left(\frac{P_*}{2\times10^{-3}{\rm
+      ~s}}\right)^{1/5}\!\!\!\left(\frac{\dot{M}}{4.3\times10^{-12} {\rm g~s^{-1}}}\right).  
+\end{eqnarray}
+In this equation, $\mu = B_*R_*^3$ is the magnetic moment of the star,
+$\Omega_*$ ($P_*$) is its spin frequency (period) and $\dot{M}$ the
+mass accretion rate through the disc. The quantities have been scaled
+to a weak magnetic field, rapidly-spinning neutron star in outburst
+(at $\sim0.01\dot{M}_{\rm Edd}$, or $L_{\rm X} \sim
+10^{36}$).\footnote{Equation \ref{eq:rm} predicts a somewhat smaller
+  truncation radius than the more commonly used prescription (Ghosh \&
+  Lamb; Pringle \& Rees) which equates the ram pressure of the
+  infalling gas and magnetic field of the star without considering the
+  relative rotation between the two.} For a weakly magnetic rapidly
+spinning star, truncation by a magnetic field will thus decrease the
+luminosity from the accretion flow ($L_{\rm flow} \simeq
+GM_*\dot{M}/2R_{\rm in}$ by a factor of about 2 compared with the
+unmagnetized case (when the source is fairly bright) and force a
+steeper relationship between luminosity and accretion rate ($L_{\rm
+  flow} \propto \dot{M}^{6/5}$ versus a $\propto \dot{M}$). The
+stronger the magnetic field, the further away $r_{\rm m}$, and hence
+the smaller \fflow will be.
+
+The biggest uncertainty for magnetospheric accretion however, is what
+exactly happens when the accretion rate decreases so much that the
+inner radius of the flow predicted by (eq. \ref{eq:rm}) moves outside
+the co-rotation radius-- $r_{\rm c} \equiv
+(GM_*/\Omega_*^2)^{1/3}$--the point where the disc and the star rotate
+at the same rate. If the inner edge of the disc lies outside this
+point, the rotating magnetic field creates a centrifugal barrier and
+can prevent matter from accreting onto the star. It is commonly
+assumed that the matter accreting through the disc will be expelled
+when it hits the centrifugal barrier of the star -- the ``propeller''
+effect.
+
+In a strong propeller (where most of the accretion flow is expelled)
+the flow's intrinsic radiative efficiency becomes impossible to
+determine without a good model for how the magnetic field actually
+expels material. The luminosity from the stellar surface will depend
+on the net accretion rate onto the star (which presumably decreases
+non-linearly with the accretion rate at the inner edge of the flow),
+while the luminosity from the disc will decrease with the accretion
+rate of the flow as $L \propto \dot{M}^{6/5}$. 
+
+Recent work has demonstrated that a propeller is not inevitable in
+magnetospheric accretion. ST93 noted that in order to efficiently
+drive an outflow, the amount of energy added to the disc as it
+interacts with the star must be large enough to accelerate gas to at
+least least its escape velocity. This will not be the case when the
+disc is truncated close to the corotation radius. As a result, the
+magnetic field can act as a barrier instead of a propeller: some gas is
+confined by the magnetic field while the remainder is able to accrete
+through the barrier, either steadily or in bursts of accretion. The
+inner edge of the disc remains very close to \rc, and is no longer
+given by eq. \ref{eq:rm} DS10/11/12 studied this solution in more {\tt
+  describe more accurately why those papers are new: describes the
+  dead disc state where barrier is established, predicts size of reservoir}
+detail and found that this `magnetic barrier' can change the gas
+structure of the disc, from the standard accreting disc solution to a
+`dead disc' solution first derived by Shakura \& Sunyaev, and that
+accretion onto the star can continue down to arbitrarily low accretion
+rates.
+
+Forming a dead disc rather than a propeller will have important
+consequences for the radiative efficiency of the flow. Once the inner
+edge of the accretion flow has moved outward close to \rc it will
+remain confined there, so that the accretion luminosity in the disc
+will be proportional to $\dot{M}$ rather than $\dot{M}^{6/5}$. A dead
+disc solution also have considerably more mass than a standard
+accretion disc for the same accretion rate, so the surface density of
+the flow will be larger than the equivalent `propeller' solution. This
+may be relevant if the flow is an optically thin RIAF, since the
+increased density will increase its radiative efficiency. {\tt there will be a
+  figure to show how \fbl and \fflow change as  a function of
+  accretion rate, both for a dead disc and for a propelling disc}
+
+What is the magnetic field in Cen X-4? A strong propeller was first
+invoked for Cen X-4 in (Menou \& McClintock), in order to explain the
+observed hard X-ray emission as originating from an ADAF. If the
+majority of the gravitational potential energy is not radiated but
+instead advected onto the surface of the star (as the ADAF model
+predicts), the surface should be orders of magnitude brighter than the
+accretion flow, which is contrary to observations. Indeed, even for a
+`weak' field of $10^{7}-10^{8}$G, the low observed accretion rates and
+a millisecond spin period would put Cen X-4 in the `propeller'
+regime. However, we see no firm evidence for magnetic behaviour, and
+in particular no evidence for pulsations (sec. \ref{sec:CenX4}), which
+would indicate organized, channelled accretion flows. It thus seems
+unlikely (and as we show in the next section, unnecessary) that a
+strong magnetic field is substantially altering Cen X-4's accretion
+flow.
+
+In summary, while there are various effects that will decrease the
+luminosity of the star or the accretion flow so that the observed
+emission from either is considerably less than would be expected from
+the amount of mass accreted, all these effects except a strong
+magnetic propeller will change the balance by factors of order unity,
+wherease the RIAF models generally predict the radiative efficiency
+wil be reduced by several orders of magnitude. We therefore expect to
+be able to test RIAF models with reasonably good deep observations of
+neutron stars in quiescence.
+
+\section{Observations of Cen X-4}
+\label{sec:CenX4}
+Cen X--4 has been observed in quiescence with \textit{XMM–Newton} on
+200X XX XXX (MJD XXXXX) for a total on-source exposure time of
+${\sim}80$ ks. The \textit{XMM–Newton} telescope (Jansen et al. 2001)
+consists of three 1500 cm$^2$ X-ray telescopes with an EPIC instrument
+in each focus, a Reflecting Grating Spectrometer (RGS; den Herder et
+al. 2001) and an Optical Monitor (Mason et al. 2001). The EPIC-pn
+detector (Strder et al. 2001) operated in timing mode (with thin
+filter), recording data with high time resolution with a sampling time
+of $29.56\rm\,\mu\,s$.  Since we are looking for pulsations from a
+millisecond pulsar, we selected only data coming from the EPIC-pn CCD.
+
+ Data have been processed using SAS version X.X.X, and we have
+ employed the most updated calibration files (CCF) available at the
+ time the reduction was performed (May 2014).  The photons are
+ filtered by applying stantard screening criteria and by removing
+ solar flares and telemetry dropouts.  After filtering the total net
+ exposure time is 68.5 ks.
+
+
+\section{Semi-Coherent Search}
+
+To inspect for the presence of X-ray pulsations we adopted a
+semi-coherent search strategy \citep{messenger2011}.  Given a certain
+finite amount of computational time, the semi-coherent
+search divides the data in short segments of length $\Delta T$. In a
+first step, each segment is searched \textit{coherently}. Then the
+different segments are combined incoherently. An extensive description
+of the technique can be found in \citet{messenger2011,
+  something-more?} and in \citet{Messenger\&Patruno} where the same
+scheme has been adopted to search for pulsations in the low-mass
+X-ray binary Aql X--1.
+
+During the search we assumed a circular orbit and no prior knowledge
+of the orbital phase whereas we restricted the orbital period and
+semi-major axis according to the values reported in \citet{someone}
+(see also Table~\ref{tab:parspace}).  To avoid the influence of
+possible unreported systematics we extended the boundaries used for
+the orbital period. We also assumed a constant fractional amplitude of
+the pulsations for the entire duration of the observations. 
+
+\begin{table}
+\begin{tabular}{cccc}
+\hline \hline
+Parameter & Units & Min & Max \\ 
+%
+\hline
+%
+$\nu$ & Hz & 50 & 1500\\
+$a$ & lt-s & 0.04 & 1.9 \\
+%$\Omega$ & rad/sec & $9.0903\times 10^{-5}$ & $9.4342\times 10^{-5}$ \
+$P$ & s & 54000 & 54720 \\
+$T_{\mathrm{asc}}$ & s & \multicolumn{2}{c}{full orbit}\\
+\hline \hline
+\end{tabular}
+\caption{The parameter space boundaries for the Cen X--4 search.
+\label{tab:parspace}}
+\end{table}
+%
+
+We divided the data into segments of $\Delta T=128$ s that we searched
+coherently.  We then combined incoherently the detection statistics of each segment for a total of
+34.2 billion trials. Our expected theoretical sensitivity for a
+multi-trial false alarm of $1\%$ and a false dismissal probability of
+$10\%$ is 6.8\% rms. We detect no significant pulsations with a
+fractional amplitude upper limit of 6.44\%. 
+
+\section{How is the quiescent spectrum of Cen X-4 produced?}
+\label{sec:phys_proc}
+The key observational characteristics of the quiescent spectrum in Cen
+X-4 are detailed above. They are: a roughly equal thermal and
+non-thermal x-ray spectral components that co-vary in luminosity on
+short ($<100$s) timecales. There is also excess UV and optical
+emission that correlates with X-ray variability and suggests
+reprocessing either in the outer accretion disc or the surface of the
+companion star ([earlier work as well, Bernardini+ 2014]). The rapid
+and simultaneous variability in all wavelengths and spectral
+components suggests that accretion energy is the main source of
+luminosity as opposed to, e.g. cooling in the neutron star crust
+[REFERENCE]. The non-thermal component has a relatively hard spectrum
+($\Gamma \simeq 1.4-2$) and, in the recent observation of
+[Chakrabarty+2014] shows clear evidence of a break around 10-20
+keV. This component is most likely produced by optically thin emission
+from relatively hot gas, while the thermal component is presumably the
+neutron star surface. 
+
+Below we discuss why the non-thermal emission likely does not
+originate in the accretion flow (as suggested by Chakrabarty+2014),
+and propose instead that this component originates from optically thin
+thermal bremsstrahlung in the boundary layer of the star. As described
+in sec. \ref{sec:models}, in most circumstances at least 30\% of the
+total accretion energy is released in this boundary layer, and this
+energy is expected to be mainly radiated away.
+
+\subsection{Why the observed high-energy X-ray spectrum does not
+  originate in the accretion flow}
+\label{sec:chakra}
+\subsubsection{The `ADIOS' proposal from Chakrabarty+2014}
+
+The model presented by Chakrabarty+2014 attributes the non-thermal
+spectral component to an `ADIOS' flow -- a radiatively-inefficient
+flow model proposed by Blandford and Begelmann 99 in which
+gravitational potential energy released by infall is primarily used to
+heat the accreting gas and launch a strong outflow of gas from the
+flow. As a result the net accretion rate inward is a strong function
+of radius:
+\begin{equation}
+\dot{M}(r) = \dot{M}(r_{\rm in})\left(\frac{r}{r_{\rm in}}\right)^p
+\end{equation}
+where $ 0 \leq p < 1$ is a scaling parameter for the local accretion
+rate as a function of radius: $p = 0$ gives the standard solution (no
+outflow), while $p < 1$ is imposed so that the gravitational energy
+released increases with decreasing radius.  If the wind is very strong
+and the RIAF extends across the inner $\sim10^4 R_{\rm S}$ of the
+flow, the accretion rate at the inner edge of the accretion flow is
+four orders of magnitude of lower than at the outer edge where the
+flow begins.
+
+To fit the observed Cen X-4 spectrum, Chakrabarty+2014 assume that the
+electron gas in the entire flow has a temperature of $18~{\rm keV}$
+(since the flow is a two-temperature plasma, the proton temperature
+can be orders of magnitude higher). Since the accretion rate increases
+with radius, there is much more gas and hence more emission in the
+outer disc regions. They assume that the total luminosity from the
+source corresponds to the net accretion rate onto the star at $r_{\rm
+  in}$ so that $\dot{M} \simeq 4\times10^{-6}\dot{M}_{\rm Edd}$. They
+adopt a quasi-spherical geometry for the flow with a radial velocity
+$v_{\rm R} = \eta \sqrt{(GM_*/R)}; \eta \simeq 0.1$ (a standard
+assumption for RIAFs), which gives the density of the gas as a
+function of radius. The emission function of gas producing
+bremsstrahlung is (CITE Rybicki and Lightman; assuming ionized
+hydrogen and a Gaunt factor of 1.2) :
+\begin{equation}
+\label{eq:brems}
+U_{\rm ff} = 1.22\times10^{-27} n_e^2T_e^{1/2} \rm {erg}~\rm{s^{-1}}~\rm{cm^{-3}},
+\end{equation}
+so the strength of the non-thermal component can be used to obtain the
+required density profile and hence constrain $p$.  To fit the observed
+spectrum requires a very large outflow ( $p> 0.8-1$ for $R_{\rm out} =
+10^5-10^4 R_{\rm S}$) in order to find a solution.
+
+Overall, this interpretation strains the model of Blandford \&
+Begelmann in several ways. First, it requires a very extended
+($10^4-10^5 R_*$) radiatively-inefficient region with a
+maximally-outflowing flow, in which accretion energy from a very small
+fraction of the gas $\sim \!\!10^{-5}\!-\!10^{-4}$ is contributing
+equally both to powering an outflow and producing the observed
+radiation. Such a large amount of radiation is not a necessary
+consequence of the ADIOS model, and only applies in the present case
+because there is so much hot matter in the outer parts of the
+disc. Furthermore, with a temperature of 18 keV, the gas around $R_{\rm
+  out}$ has a sound speed equal to or considerably greater than the
+Keplerian velocity of the flow, meaning that it will be essentially
+unbound. This is in contrast to the BB99 model which predicts a sound
+speed of at most $c_{\rm s} \sim 0.6-0.8 v_{\rm K}$. This mismatch is
+only excerbated by the observation that the spectral index hardens as
+the accretion rate decreases (Chakrabarty+2014 and Cackett+2012??),
+which Chakabarty2014 interpret as evidence of an increased temperature
+in the gas.
+
+The near-balance and covarying light curves of the thermal and
+non-thermal spectral components also presents a challenge for the
+ADIOS interpretation. As discussed in BB99, the ADIOS model can be
+extremely radiatively inefficient: the amount of radiation from the
+flow can be arbitrarily small, since most of the accretion energy is
+used to liberate the gas in an outflow. The fact that this source has
+nearly equal thermal and non-thermal components (and that roughly the
+same behaviour is seen in several other quiescent neutron stars like
+xxxxxxxx) is therefore a coincidence. At $10^4R_{\rm S}$ the
+characteristic accretion time, $t_{\rm visc} \sim r/v_r = (10/\eta)
+\sqrt{GM_*/R^3}$ is about 770 seconds, or nearly an order of magnitude
+larger than the observed timescale for covariance of the two spectral
+components, which suggests that the two components are causally linked
+on shorted timescales than the ADIOS model would predict.
+
+Some of these problems can be alleviated by uncertainty in the
+accretion rate. As noted in Chakrabarty+2014, Cen X-4 could be in a
+strong propeller state, in which most of the accretion flow that makes
+it all the way to the star's magnetosphere is expelled in an outflow
+before it accretes onto the star. The thermal component from the
+neutron star surface would then be a reflection of the rate at which
+residual gas hits the star rather than the accretion rate in the inner
+part of the accretion flow, which could then be much higher. This
+could resolve the energetic difficulties of the model, since a higher
+accretion rate will have more gas for the same temperature, so that a
+weaker outflow and perhaps smaller ADIOS region is necessary to
+produce the observed emission. However (beyond the question of whether
+a strong propeller can actually easily form), this solution does even
+worse at explaining the covariation of the thermal and non-thermal
+components and their near equality, since there is now a strong
+propeller that severs the connection between the amount of gas hitting
+the star and the amount radiating in the accretion flows outer
+regions. Furthermore, as we discussed in sec. \ref{sec:CenX4}, there
+is no evidence for pulsations in Cen X-4 (and several other similar
+quiescent neutron stars) even though the neutron surface can clearly
+be seen which raises strong doubts that the neutron star is actually
+channelling matter. We thus consider this possibility unlikely, and
+conclude that the non-thermal component does not originate in a
+large-scale ADIOS model, as proposed by Chakrabarty+2014.
+
+\subsubsection{Radiation from the inner part of flow}
+\label{sec:inner}
+The hardness of the non-thermal spectrum and the low X-ray cutoff sets
+considerable constraints on the emission mechanism and its
+geometry. For one thing, the spectral shape essentially excludes the
+inverse Compton scattering as the emission mechanism, since it
+requires an extremely high optical depth ($\tau 4-9$, depending on the geometry) and low
+temperature (6 keV). Chakrabarty+2014 showed that a RIAF-type geometry
+(with a large geometric scaleheight for the flow) cannot produce the required
+amount of emission. 
+
+In principle this emission could come from inverse Compton scattering
+from a thick higher temperature corona covering a Shakura-Sunyaev-type
+thin disc, but a simple energy balance calculation shows this is
+extremely unlikely. From the Chakrabarty+2014 fit of the non-thermal
+component with an Inverse Compton spectrum from a disk, they obtain
+$\tau \sim 9$ and $k_{\rm B}T \sim 6 {\rm keV}$. The scaleheight of
+such a corona (assuming hydrostatic equilibrium) would then be:
+\begin{equation}
+\frac{H}{R} = \left(\frac{kTR}{m_{\rm p} GM_*}\right)^{0.5} \sim 0.01,
+\end{equation}
+which is about $10^4$cm in the inner parts of the flow. Furthermode,
+the energy balance between the surface corona and underlying disc can
+prevent the power-law index from becoming harder than $\Gamma \sim 2$
+(Haardt \& Maraschi 1991).
+
+It is straightforward to show that such a small scaleheight requires
+too high a density for the temperature. For an optical depth of $\tau
+= \kappa \rho H\sim 9$, the surface density of the corona will have to
+be (assuming hydrogen gas and that electron scattering is the
+principle form of opacity):
+
+\begin{equation}
+H N_e =  1.3 \times 10^{25} {\rm cm^{-2}}\left(\frac{\kappa}{0.4 {\rm
+      g^{-1}~cm^{2}}}\right)^{-1}\left(\frac{m}{1.6\times10^{-24}{~\rm
+      g^{-1}}}\right).
+\end{equation}
+
+This implies a number density of $N_{\rm e} \sim 10^{21} {\rm
+  cm^{-2}}$, which is too high for heating (from turbulent viscosity)
+to balance radiative losses from bremsstrahlung, as the following
+argument shows. {\tt just show radiative losses from Bremsstrahlung }
+
+% {\tt Assume that energy is dissipated locally so that the
+% disc is radiatively efficient (as in a thin disc), and that a fraction
+% of the accretion energy $f$ is deposited in the corona, while $(1-f)$
+% is in the underlying thin disk. Heating will be balanced by thermal
+% bremsstrahlung and inverse Compton scattering. The energy balance
+% equation (as a function of radius) per unit disc area will be:
+
+% \begin{equation}
+% \frac{3GM\dot{M}}{8\pi R^3} f = 1.22\times10^{-27}T^{1/2}_{\rm e}
+% N^2_{\rm e} H + \frac{4 k T_{\rm e}}{m_{\rm e}c^2} c
+% \sigma_{\rm T} N_{\rm e} H \frac{3 GM\dot{M}}{16\pi R^3 c} (1-f/2).
+% \end{equation}
+
+% In the above equation, the first term represents bremsstrahlung
+% cooling and the second Inverse Compton scattering.  The underlying
+% disc is assumed to be heated by some of the energy in the corona that
+% shines back down on it (hence the extra factor f/2).
+Assuming $\dot{M}
+= 4.3\times10^{12} {\rm g~s^{-1}}$, the local heating rate in the
+inner disc will be $\sim 3\times10^{19} {\rm erg~s^{-1}~cm^{-2}}$
+while bremsstrahlung emission will dominate the radiative cooling and
+be much larger: $\sim 1.8\times 10^{23} {\rm erg~s^{-1}~cm^{-2}}$. The
+solution is thus not physically consistent and we conclude the
+emission cannot come from a corona above a thin disc.
+
+Another possibility not considered by Chakarabarty+2014 is that the
+spectral break comes from `reflection' (Ross \& Fabian) of a strong
+non-thermal power-law spectrum off a much cooler dense surface (like
+the face of an accretion disc or the neutron star surface). In this case we
+would expect to see a strong K-$\alpha$ iron emission line, which is
+not seen at all in the spectrum. Nonetheless, in order to conclusively
+exclude this model, we refit the observed $NuStar$ spectrum with a
+power-law and reflected component modified by GR and rotation
+effects.{\tt Joel will do this...write this paragraph in
+  consequence. I suggest using the Laor blurring model which will
+  over-allow the amount of blurring. Hopefully this can be excluded
+  altogether}.
+
+The conclusion of this section is that there is no obvious way for the
+accretion flow at such a low accretion rate to produce the (apparent)
+bremsstrahlung emission unless the accretion rate at the inner edge is
+considerably larger than implied by the observed emission. This case
+requires a strong propeller, which then does not explain the apparent
+balance between thermal and non-thermal components, nor the short
+timescale covariance of these components. 
+
+\subsection{Emission from the boundary layer}
+\label{ref:boundary}
+Given that more than half the emission comes from a thermal component
+(interpreted to be the stellar surface heated by accreting gas) and
+that the two spectral components are roughly equal and covary, it is
+natural to suggest the non-thermal component also originates close to
+the neutron star surface. As outlined in section \ref{sec:chakra} and
+\ref{sec:inner}, it is difficult to envision a physically plausible
+scenario in which the non-thermal emission comes from the accretion
+flow. We thus suggest that it originates from the boundary layer: the
+region where the infalling gas rapidly transitions from Keplerian
+orbits to settling onto the star. As discussed in section
+\ref{sec:models}, a large fraction (typically at least $1/3\!\!-\!\!1/2$) of
+the total accretion energy must be dissipated in this region, and
+there is no reason to assume that this energy will all be immediately
+and efficiently thermalized and emitted as black-body radiation.
+
+If all the radiation is emitted from the boundary region (and heating
+by the stellar surface) this means that the flow itself is essentially
+undetected. This is an exciting conclusion: it demonstrates
+unambiguously both that radiatively inefficient flows exist and also
+puts a constraint on the accretion rate (at least in the inner
+regions of the flow) at which they exist. {\tt at some point remark on why NS are
+  so much better than BH to study this: see them at all accretion
+  rates/luminosities, surface emission can tell you what is happening
+  in central regions of the system; also want to re-interpret the UV
+  emission: how bright should the inner edge of the accretion disc be
+  from reprocessed emission? This can set a limit on *where* the inner
+  edge of the disc is, i.e where the outer edge of the RIAF is} In the
+next section we reanalyse the $NuStar$ data to put an upper limit on
+the strength of any additional power-law component (that would come
+from the accretion flow), which can put an upper limit on the
+radiative efficiency of the flow. 
+
+In this section however, we put some simple constraints on the
+boundary layer emission properties and comment on what this
+observation can demonstrate about boundary layer physics (which is
+also very poorly understood). A more detailed analysis of the boundary
+layer (including how emission properties from this region will change with
+accretion rate) will follow in a companion paper.
+
+As demonstrated in the previous section and Chakrabarty+2014
+concluded, the most plausible emission model for the flow is optically
+thin thermal bremsstrahlung. Comptonization is excluded since if the
+optical depth were high enough to produce the emission it would
+completely obscure the surface emission from the star. Synchrotron
+emission may also be important if the boundary layer has magnetic
+turbulence with $\beta = P_{\rm gas}/P_{\rm B} \sim 1$, but this will
+have a quasi-thermal shape (cite paper I found that calculated this),
+while synchrotron emission from shocks typically has a much higher
+cutoff energy (cite).
+
+If the boundary layer covers the surface of the star with a
+scaleheight $H$ and emits bremsstrahlung radiation, the non-thermal
+luminosity can be used to define the relationship between density and
+scaleheight:
+\begin{eqnarray}
+L_{\rm ff} &=& U_{ff} 4\pi R_*^2 H\\
+\nonumber&=& 1.5\times10^{-41} n_{\rm e}^2 H \left(\frac{R_*}{10^6{\rm
+      cm}}\right)^2 {\rm erg~ s^{-1}}.
+\end{eqnarray}
+(As before we assume a Gaunt factor of $g\sim 1.2$ and ionized
+hydrogen gas).  Thus:
+\begin{equation}
+\label{eq:n2H}
+n_{\rm e}^2H = 3.4\times10^{41}\left(\frac{R_*}{10^6{\rm cm}}\right)^{-2}
+\left(\frac{L_{\rm ff}}{6\times10^{32} {\rm erg~s^{-1}}}\right) \rm{cm^{-5}}.
+\end{equation}
+
+Since the spectrum is dominated by Bremsstrahlung emission, this must
+dominate over losses from inverse Compton scattering. This sets a firm
+lower limit on the density in the layer (and upper limit on the scale
+height). The energy density of Inverse Compton scattering will be:
+
+\begin{equation}
+U_{\rm IC} = \frac{4kT_{\rm e}}{m_ec^2} c \sigma_{\rm T} n_{\rm e}
+\frac{L_{\rm BB}}{8\pi R_*^2c} {\rm erg~s^{-1}~cm^{-3}},
+\end{equation}
+where $\sigma_{\rm T}$ is the Thomson cross-section and $L_{\rm
+  BB}\!\!\sim 6\!\!\times 10^{32} {\rm erg~s^{-1}}$ is the quasi-thermal
+emission from the surface of the star. Requiring that $U_{\rm
+  ff}/U_{\rm IC} > 1$ (where $U_{\rm ff}$ is given by eq. (\ref{eq:brems})) and
+using the measured electron temperature $kT_{\rm e} = 18{\rm keV}$, we
+find that the electron density must be at least:
+\begin{equation}
+n_{\rm e} \geq 10^{17} {\rm cm}^{-3},
+\end{equation}
+so that the scale height is at most $H < 10^7 {\rm cm}$. This is
+clearly not much of a constraint, but rather confirms that
+bremsstrahlung will indeed be the dominant radiation process for such
+(relatively) low coronal temperatures.
+
+We can also set an upper limit on the density of the boundary layer
+from considering the accretion rate required to match the observed
+luminosity and making a reasonable guess about the infall
+velocity. Assuming the entire luminosity ($L_{\rm tot}$) comes from the boundary
+layer, the accretion rate onto the star will be:
+\begin{equation}
+\dot{M} = \frac{L_{TOT}}{v^2_{\rm K}\mathcal{F}_{\rm BL}},
+\end{equation}
+where $v_{\rm K} \equiv (GM_*R_*^{-1})^{1/2}$ is the Keplerian
+velocity at $R_*$. Since the radiation is divided up into a thermal
+and non-thermal component, we can immediately relate the accretion
+rate to the number density by using equation \ref{eq:n2H}:
+
+\begin{equation}
+\label{eq:lum}
+\dot{M}v^2_{\rm K}\mathcal{F}_{\rm BL} = 1.8\times10^{-23}
+\frac{L_{\rm TOT}}{L_{\rm ff}} n_{\rm e}^2 H.
+\end{equation} 
+Assuming radial infall, the accretion rate onto the star will be:
+\begin{equation}
+\label{eq:mdot}
+\dot{M} = 4\pi R_*^2 m_{\rm p} n_{\rm e} v_{\rm R},
+\end{equation}
+where $v_{\rm R}$ is the radial infall velocity. Substituting
+eq. \ref{eq:mdot} into eq. \ref{eq:lum} the number density of the gas
+will be:
+\begin{equation}
+  n_{\rm e} = 5.6\times 10^{22} \frac{L_{\rm ff}}{L_{\rm
+      TOT}} m_{\rm p} \mathcal{F}_{\rm BL}v^2_{\rm K}
+  \frac{v_{\rm R}}{H}.
+\end{equation}
+This gives a somewhat counter-intuitive result: the number density of
+the gas is proportional to the radial velocity, so that a higher
+density implies a larger radial velocity. This is because of the $n^2$
+dependence in the bremsstrahlung emission -- a higher accretion rate
+requires the density increase as $n^2$ to radiate the additional
+energy away by bremsstrahlung.
+
+The boundary layer (assuming no magnetosphere) is expected to be
+strongly turbulent, since infalling gas must transition from Keplerian
+orbits to co-rotation with the star. Shakura \& Sunyaev 1988/1999
+derived some simple physical properties of the boundary layer,
+assuming that Prandtl-type turbulence flow develops. The net infall
+velocity of the gas can be expressed:
+\begin{equation}
+v_{\rm r} \simeq v_{\rm K} \frac{\mathcal{M}^2 (3 + \Omega_*/\Omega_K)}{2C}\frac{H}{R_*},
+\end{equation}
+where $\mathcal{M}$ is the Mach number of the flow, $\Omega_*/\Omega_{\rm
+  K}$ is the ratio of the stellar spin frequency to the Keplerian
+frequency in the inner disc and $C$ is a numerical parameter of order
+unity (representing uncertainty in the nature of the turbulence). If
+we assume strong, nearly super-sonic turbulence $\mathcal{M} \sim 1$, the
+maximum infall velocity will be:
+\begin{equation}
+v_{\rm r} \simeq \frac{3}{2}\frac{H}{R_*}v_{\rm K, *}.
+\end{equation}
+
+This corresponds to a maximum density for the accretion flow:
+\begin{equation}
+n_{\rm e} < 7 \times 10^{22} {\rm cm^3}, 
+\end{equation}
+which again is not very constraining (it demands $H\> 10^{-5} {\rm
+  cm}$) but at least is consistent with expectation.
+
+Considering the problem from another perspective, if we assume that
+the scale height of the flow is similar to the hydrostatic scaleheight
+for the corona of $kT_{\rm keV}$ and gas temperature $c_{\rm s} \sim
+1.3\times10^8 {\rm cm~s^{-1}}$ then :
+
+\begin{equation}
+H \sim  R_* \left(\frac{c_{\rm s}}{v_{\rm K}}\right)^2 \sim 10^2 {\rm cm},
+\end{equation}
+which is consistent with the limits we have derived and implies a
+number density of $n_{\rm e} \sim 6\times10^{19} {\rm cm^{-3}}$ (note
+that this implies a Compton optical depth $\tau \sim \sigma_{\rm T}nH
+< 10^{-2}$, so that Comptonization will essentially be irrelevant).
+
+This solution implies that the boundary layer is a single temperature
+gas. This will be true as long as the density is high enough for the
+ions and electrons to maintain collisional equilibrium faster than the
+ions can heat (via turbulence) or the electrons can cool by
+radiating. As a final check on our solution above, we can compare the
+predicted turbulent heating timescale (the infall time), the cooling
+timescale (bremsstrahlung emission from electrons) and the timescale
+for the electrons and ions to reach collisional equilibrium.
+
+The characteristic heating time for the gas will be approximately the
+infall time:
+\begin{equation}
+t_{\rm heat} \simeq \frac{H}{v_{\rm r}}  \simeq \Omega_K =
+7.6\times10^{-5} {\rm s},
+\end{equation}
+while the timescale for the gas to cool via bremsstrahlung emission
+will be:
+\begin{eqnarray}
+t_{\rm ff} &\simeq& 4\times10^{-13}\rho^{-1}T_{\rm e}^{1/2} {\rm s}\\
+\nonumber &=& 5.7\times10^{-5}\left(\frac{n_{\rm e}}{6\times10^{19}
+      {\rm cm^{-3}}}\right)^{-1} {\rm s}.
+\end{eqnarray}
+
+The timescale for electrons and ions to reach equilibrium will be
+(cite Boyd \& Sanderson):
+\begin{equation}
+t_{\rm e-i} = \frac{4.6\times10^{-23} T_{\rm e}^{2/3}}{\rho}\left(1 +
+  \frac{1}{\tau}\right) \rm{s},
+\end{equation} 
+where $\tau \equiv (T_{\rm i} - T_{\rm e})/T_{\rm e}$ is the
+fractional difference between the ion and electron temperatures. For
+our lower-limit on density $n_{\rm e} > 10^{17} cm^{-3}$, it is easy
+to see that $t_{\rm e-i} < t_{\rm heat}$ is easily satisfied for a
+single-temperature plasma:
+\begin{equation}
+t_{\rm e-i} <  9.4\times10^{-11}(1 + \frac{1}{\tau}){\rm s}.
+\end{equation}
+A fractional temperature difference of $\sim 10^{-7}$ will be enough
+to maintain collisional equilibrium on a timescale similar to $t_{\rm heat}$.
+
+In a further paper we will investigate the physical properties of the
+boundary layer in more depth, and in particular derive a relationship
+between accretion rate and temperature (as reported by Cackett+ and
+Chakrabarty+), as well as investigate the implications of the near
+equilibrium between thermal and non-thermal components by constructing. Since the main
+object of our current paper is to demonstrate that the boundary layer
+can naturally account for the entire quiescent emission observed from
+Cen X-4, we thus leave further investigation of the boundary layer
+itself to a future work, and now turn to setting constraints on the
+radiative-inefficiency of the flow based on its non-detection. 
+
+% \index{\begin{itemize}
+% \item{IC scattering fit requires low temperature, high optical
+%     depth. If it covers the whole star, don't see the star. If it is
+%     an column somewhere on the star, the majority of the cooling will
+%     be produced from thermal photons outside the column scattering in
+%     through the side and scattering out again, e.g. relevant optical
+%     depth will not be vertical one but much smaller ``effective'' one
+%     and spectrum will not be as hard}
+% \item{Don't expect a thin cold disk at such low accretion rates, what
+%     if there were a dead disk??(a lot of material stays in the disk
+%     even though accretion rate is low). This doesn't work either:
+%     assuming density is high enough for a cold disk covered by a hot
+%     corona, minimum spectral index is around 1.5 (Haardt \& Maraschi)
+%     since there will be coupling between cold disk (seed photons) and
+%     hot flow (IC photons heating disk) require an energy balance
+%     between the two components}
+% \item{essentially impossible to get high optical depth and cool
+%     temperature and still see the NS surface (thermal component). So
+%     not IC scattering}
+% \end{itemize}
+% \subsection{Emission Region}
+% \subsection{Why it is coming from the surface of the star}
+% \begin{itemize}
+% \item{most likely bremsstrahlung emission: from temperature can
+%     estimate emitting volume, get the density if you assume a scale
+%     height and surface covering fraction}
+% \item{Scale height set by the fact that the plasma is probably
+%     two-temperature so the protons are $\sim$virialized; if this holds then
+%     the scale height of gas on the surface of the star doesn't change
+%     much for large variations in accretion rate}
+% \item{If it comes from the accretion flow would need to be a very thin
+%     disk if it were a disk: $h/r \sim 0.01$ to make it dense enough to
+%     radiate as brems not compton scattering. Can show this doesn't
+%     easily work: disk would heat up and expand very quickly}
+% \item{basically reproduce my calculations here: I put upper and lower
+%     limits on the density independent of the volume of the emitting
+%     region}
+% \end{itemize}
+% }\begin{itemize}
+% \item{IC scattering fit requires low temperature, high optical
+%     depth. If it covers the whole star, don't see the star. If it is
+%     an column somewhere on the star, the majority of the cooling will
+%     be produced from thermal photons outside the column scattering in
+%     through the side and scattering out again, e.g. relevant optical
+%     depth will not be vertical one but much smaller ``effective'' one
+%     and spectrum will not be as hard}
+% \item{Don't expect a thin cold disk at such low accretion rates, what
+%     if there were a dead disk??(a lot of material stays in the disk
+%     even though accretion rate is low). This doesn't work either:
+%     assuming density is high enough for a cold disk covered by a hot
+%     corona, minimum spectral index is around 1.5 (Haardt \& Maraschi)
+%     since there will be coupling between cold disk (seed photons) and
+%     hot flow (IC photons heating disk) require an energy balance
+%     between the two components}
+% \item{essentially impossible to get high optical depth and cool
+%     temperature and still see the NS surface (thermal component). So
+%     not IC scattering}
+% \end{itemize}
+% \subsection{Emission Region}
+% \subsection{Why it is coming from the surface of the star}
+% \begin{itemize}
+% \item{most likely bremsstrahlung emission: from temperature can
+%     estimate emitting volume, get the density if you assume a scale
+%     height and surface covering fraction}
+% \item{Scale height set by the fact that the plasma is probably
+%     two-temperature so the protons are $\sim$virialized; if this holds then
+%     the scale height of gas on the surface of the star doesn't change
+%     much for large variations in accretion rate}
+% \item{If it comes from the accretion flow would need to be a very thin
+%     disk if it were a disk: $h/r \sim 0.01$ to make it dense enough to
+%     radiate as brems not compton scattering. Can show this doesn't
+%     easily work: disk would heat up and expand very quickly}
+% \item{basically reproduce my calculations here: I put upper and lower
+%     limits on the density independent of the volume of the emitting
+%     region}
+% \end{itemize}
+% \subsection{How will spectrum change with the accretion rate?}
+% \begin{itemize}
+% \item{If we assume that the radiation mostly comes from the surface,
+%     and that the rate at which the protons cool stays constant over
+%     the range of accretion rates (proton cooling is undetectable
+%     directly: they must get conducted into the neutron star surface
+%     and heat it) we can build a simple model of how the temperature
+%     and therfore spectrum will change with accretion rate. Assume
+%     that the heating rate and proton cooling rate scale linearly (over
+%     this small-ish range) with electrons heated at the same rate and
+%     cooled by both Compton scattering (scales with $\dot{M}^2 T_e$)
+%     and Bremsstrahlung (scales with $\dot{M}^2 T_e^{1/2}$). At lower
+%     accretion rates the temperature will increase, which might explain
+%     the observed spectral hardening as the accretion rate goes
+%     down. At some predictable point Compton scattering will take over
+%     as the dominant emission mechanism and the spectral index will be
+%     set by the Compton y-parameter, i.e. will deviate from $\Gamma\sim
+%     1$ and become softer. This might explain the spectral softening at
+%     the lowest flux detection of Cen X-4 with $Suzaku$; I have to finish the
+%     calculation}
+% \end{itemize}
+
+\subsection{How Radiatively Inefficient is the flow?}
+\label{sec:RIAF}
+\begin{itemize}
+\item{We need the upper limits of detectability from Nustar for a power law spectral component above 10keV {\tt I don't know exactly how to do this}}
+\item{We don't detect the accretion flow at all. The maximum intrinsic
+    radiative efficiency for the flow would occur if it were
+    radiatively inefficient from having a large magnetosphere. If the
+    star spins at P=1s, the corotation radius is at 78km; at P=1ms it
+    is at 17km.}
+\item{The ``strong propeller'' case is basically a black box: we don't
+    know how efficiently it could actually expel matter. In the same
+    way, once you say strong propeller 100x more material could be
+    expelled than is being accreted, so all the arguments about the
+    observed luminosity can be totally irrelevant for determining the
+    underlying accretion rate through the majority of the disk. The
+    only limit can be on when you are expelling enough material to
+    observably change the absorption column (e.g. $\simeq 10^{21} {\rm
+      cm}^{-2}$) or start really Compton scattering the radiation from
+    the star (which will produce another hard component). I will
+    calculate this because it is an important number, but it may not
+    offer strong constraints if the disk is really truncated}
+\item{Another possibility: a truncated flow with a dead disk. In this
+    case the accretion rate at the inner edge matches the one onto the
+    star and $R_{\rm in} \sim R_{\rm co}$ (or $R_{\rm in} < R_{\rm
+      co}$ if the magnetic field is really weak). Here the unknown is
+    the spin rate of the star. The slower it spins the further away
+    $R_{\rm co}$ is. This is basically the extreme case of the
+    ``strong propeller'', since there is as little mass travelling
+    through the disk as possible. Without knowing the spin period
+    there are not really constraints on the radiative efficiency, so
+    we are stuck making arguments about the plausibility of such a
+    scenario}
+
+\item{However: there is no evidence that Cen X-4 has a
+    magnetosphere. There are no pulsations (upper limits xxx), the
+    Type I bursts indicate weak field, so maybe there is no
+    truncation? (this would suggest a field of $10^5$G) In that case,
+    the disk accretes up to the surface and there *should* be
+    radiation from the flow. Can estimate how dense it would be
+    (assume spherical, assume some accretion rate) and then check how
+    bright it would be if it were illuminated by NS surface (nb. here
+    it would be possible to do Monto Carlo simulations of what the
+    spectrum of the NS surface scattered through an atmosphere would
+    look like using the code I have from a former colleague.}
+
+\item{The above estimate is the most optimistic constraint we have to
+    demonstrate that the flow is intrinsically radiatively inefficient
+    (i.e. there is a demonstrable mis-match between the amount of mass
+    moving through the disk and how bright it is) Obviously it would
+    be nicer to confirm that there are actually two components (which
+    would mean detecting two distinct high energy components, or a
+    upward-turning break in the spectrum): NuStar might be able to do
+    that, depending on the relative strength of the two components}
+\end{itemize}
+
+% \subsection{Could the accretion flow be detectable in other sources/at higher luminosities?}
+
+% \begin{itemize}
+% \item{Following the logic of the last section, in the scenario we have
+%     sketched out we can make predictions for how the luminosity would
+%     change with accretion rate if we assume that the flow is roughly
+%     spherical and cooled mainly by Inverse Compton scattering and the
+%     surface emission keeps scaling as it did before (i.e. the
+%     turbulent heating of the boundary layer and the cooling of the
+%     protons is a linear function of accretion rate).}
+% \item{At some point, the inner flow should start to become bright
+%     enough to be detected. If it is at the same point that the optical
+%     depth starts reaching unity, then we might only detect the power
+%     law component and not see the emission from the neutron star at
+%     all.}
+% \item{This isn't a totally parameter-free calculation to do because
+%     you have to assume something about the heating rate of the gas
+%     (from the accretion flow, because a lot of that energy will go to
+%     launching an outflow), but if I do that then I can estimate the
+%     temperature of the gas when it is being cooled by emission from
+%     the neutron star. This will predict a spectrum for the accretion
+%     flow and how it changes with accretion rate. Since the luminosity
+%     will probably scale approximately like $\dot{M}^2$, at some point
+%     there should be a steep rise in luminosity even though the
+%     accretion rate has only changed a little bit}
+% \item{This roughly fits with the picture of what is seen for accreting neutron stars, but it might be good to relate this to some specific sources?}
+% \end{itemize}
+\section{Discussion}
+\label{sec:discussion}
+In this paper we have argued that the quiescent emission from the
+neutron star Cen X-4 originates entirely from accretion onto the
+surface of the star (most likely without strong modulation by the
+magnetic field), rather than in the accretion flow itself. This
+conclusion has consequences for both on the properties of the
+accretion flow (beyond its intrinsic radiative inefficiency) and the
+neutron star itself, and suggests future observations that can better
+constrain the properties of both.
+
+The very low luminosity of Cen X-4 disfavours a strongly advecting
+flow (ADAF), since a very low rate of energy release onto the surface
+of the neutron star, contrary to the ADAF model in which the majority
+of the accretion energy is carried onto the central object. This
+conclusion is the same as Bernardini+2014 and contrary to that of
+Menou \& McClintock, who ascribed the low surface emission from Cen
+X-4 as evidence of a strong magnetic propeller. As we have argued in
+this paper, Cen X-4 shows no evidence for magnetic activity at any
+luminosity: our pulse search shows no evidence for pulsations, which
+should be present if there is a strong magnetic field channelling the
+flow. It seems more likely that the majority of the accretion flow is
+prevented from reaching the star, as is proposed by several RIAF
+models (citations).
+
+These models generally require substantially more gas in the accretion
+flow than is accreted onto the star, and this gas could obscure the
+stellar surface if the density is high enough and the inclination
+angle low enough.  As shown in sec. \ref{sec:RIAF} our non-detection
+of the flow does not set a firm constraint on the density of the
+accretion flow, since at such low luminosities even the relatively
+massive disc predicted by the ADIOS model in Chakrabarty+2014 will be
+very optically thin to electron scattering ($\tau \sim
+10^{-3}$). However, if the system's inclination is low enough and the
+scale height of the flow stays roughly constant, the optical depth of
+through the flow should increase with the accretion rate, so that
+observing nearby neutron stars in a very low state
+($10^{-4}-10^{-3}L_{\rm Edd}$) will see the emission from the
+accretion flow and partly obscured emission from the star. It may be
+possible to detect non-thermal emission from both the central star and
+the accretion flow. Since the gas in the flow and the surface should
+have different temperatures and densities, this could manifest in the
+hard X-rays as two power-law components: a break in the hard X-rays
+(from where the surface emission's spectrum turns over) and a second
+power law component with a lower intensity extending to higher
+energies (from the moderatly optically-thin accretion flow). A firm
+detection of multiple power-law components would put strong
+constraints on the radiative efficiency of the flow, since it would
+constrain the relative intensity of each component. 
+
+Thermal radiation from the surface of the star could also be used to
+constrain the optical depth of the accretion flow. Assuming that the
+entire surface of the star is radiating (which seems reasonable for
+sources like Cen X-4 which show no clear magnetic activity), a
+mismatch between the measured temperature and luminosity could
+indicate that part of the emission from the star is being scattered by
+the accretion flow, thus setting a constraint on the effective optical
+depth and (where the system's inclination is known) scale height of
+the flow. This is particularly true for accreting millisecond X-ray
+pulsars, where the surface is clearly seen. In these systems a
+decrease in pulsation fraction could imply an increased optical depth
+of the accretion flow, and be used to constrain the optical depth as a
+function of luminosity.
+
+Since the present observation of Cen X-4 shows both a thermal and
+non-thermal component from the surface of the star, good modelling is
+vital to understand how accreting matter hits the neutron star surface
+and releases its energy. Since RIAFs are generally geometrically
+thick, they generically have somewhat less specific angular momentum
+than thin discs, so that the flow may be able to bombard the star on
+mostly radial orbits with very little angular momentum. This case has
+been studied (Zampieri, etc.) and found that particle bombardment
+leads to efficient thermalization of the accretion energy, so that the
+surface emits energy as a modified blackbody. In contrast, the work of
+(Sunyaev+,Popham, Igomonov?, people following that) considered a disc
+accreting onto a boundary layer (where the flow must redistribute
+large quantities of angular momentum in order to settle onto the star)
+and found most of the accretion energy is released as non-thermal
+radiation from a hot corona around the star. If these models are
+correct and valid even at the low accretion rates seen in Cen X-4,
+then the thermal/non-thermal radiation balance could be a result of
+the angular momentum distribution from the accretion flow, and could
+thus be used to put an independent constraint on its scale height. Of
+course, there may also be radiative coupling between the hot corona
+and the cool neutron star surface, whereby the accretion energy is
+deposited in the corona and partly reprocessed by the neutron star's
+surface. This would imply a very low albedo for the neutron star's
+surface. In a companion paper we investigate some of these questions
+more thoroughly in light of all the quiescent observations of Cen X-4,
+but more detailed theoretical modelling is clearly warranted.
+
+Understanding how the thermal component is produced in Cen X-4 is also
+important for observations of neutron star cooling, which track the
+thermal emission from quiescent neutron stars after an outburst and
+fit them with deep crustal cooling models. As we argue in this paper,
+the non-thermal component in all quiescent neutron stars is most
+likely generated very close to the surface of the neutron star and a
+considerable fraction of the boundary layer energy can be thermalized,
+either through direct heating or reprocessing from the non-thermal
+corona. This extra source of energy may complicate the interpretation
+of deep crustal cooling for cooling neutron stars, since this
+interpretation assumes that the surface temperature of the neutron
+star is determined only by the cooling of the deep crust.  {\tt Does
+  it? Will it? 1. Non-thermal component not always seen (with good
+  limits, if the star is so bright? Note that the component *could* be
+  hard, e.g. lots of high energy radiation for reprocessing, 2. Cooling
+  crusts generally more luminous in initial stages than Cen X-4, so
+  heating from the non-thermal component could be irrelevant Talk to
+  Joel here: what constraints could be placed? His paper claims no
+  correlation between thermal temperature and non-thermal component
+  strength except during large accretion flares}
+
+Does Cen X-4 have a substantial dipolar magnetic field? If it has a
+spin period of several milliseconds (like accreting millisecond X-ray
+pulsars) then even a very weak field ($\sim 10^6G$) will truncate the
+disc for $\dot{M} \sim 10^{-6} \dot{M}_{\rm Edd}$ and channel the flow
+onto the stellar surface. This should most likely produce some
+periodic modulation, but none is detected done to a level of $\sim
+5\%$.  The `strong propeller' scenario proposed by Menou \& McClintock
+required a field of at least $10^9{\rm G}$, which is about an order
+of magnitude larger than typically seen in AMXPs. While it is possible
+that the magnetic geometry of Cen X-4 is such that pulsations are not
+seen, the relatively large number of quiescent neutron stars without
+pulsations suggests that this is unlikely to be the case, although a
+forthcoming search should set better constraints on this (ref. Patruno
+\& Messenger, in prep). If LMXBs really don't have strong dipolar
+fields, it requires a range of at least nine orders of magnitude in
+magnetic field strength of neutron stars. 
+
+\section{Conclusion}
+In this paper we have reanalysed the data presented in
+Chakrabarty+2014 of the quiescent neutron star Cen X-4. We have argued
+that the near balance between thermal and non-thermal components in
+the X-ray spectrum, the relatively rapid covariation of these
+components, and the shape of the non-thermal component (specifically,
+its hardness and turnover around 10 keV) all suggest that the entire
+X-ray spectrum is generated in a boundary layer close to the star. The
+accretion flow itself is therefore undetected, down to a level of
+xxx\%, directly demonstrating that the flow is radiatively
+inefficient, as has been postulated by various theoretical work. We
+have demonstrated how this can set some (modest) constraints on the
+radiative inefficiency of the accretion flow, and suggested ways in
+which observations at slightly higher luminosities with $NuStar$ could
+be used to look for two power-law components (with different cut-off
+energies) in the hard radiation, which would clearly constrain the
+radiative efficiency of the flow. 
+
+We conclude that there is no evidence of a strong magnetic field in
+Cen X-4, based on a lack of detection of pulsations down to $5\%$ of
+the total flux, and therefore agree with the conclusion of
+Bernardini+2014 that a `strong magnetocentrifugal propeller' (as
+proposed by Menou \& McClintock) is disfavoured. This implies a span
+of $>9$ orders of magnitude in the dipolar strength of neutron
+stars. In the absence of a magnetic propeller, the low luminosity of
+Cen X-4 strongly favours RIAF models in which the majority of the
+accretion flow is prevented from reaching the inner regions near the
+star, either by launching an outflow (ADIOS) being recycled through
+the flow (CDAF) or inhibited by a magnetic field
+('magnetically-arrested'). We propose using the apparent luminosity
+versus measured temperature of the thermal component at somewhat
+higher luminosities to constrain the optical depth of the accretion
+flow.
+
+We used simple physical arguments for the non-thermal component to
+constrain its density to $10^{17} < n_{\rm e} < 10^{22} {\rm
+  cm^{-3}}$. This range in density corresponds to the hydrostatic
+scale heigh of both a single temperature or two-temperature plasma,
+although we argue that the coupling time between ions and electrons is
+short enough that the plasma can probably remain at a single
+temperature. 
+
+Our conclusion is based on an empirical analysis of the data: a better
+theoretical understanding of how the accretion energy is released in
+the boundary layer (and in particular how the thermal component is
+generated) is necessary to properly understand the implications of our
+results on cooling neutron star models, as well as to possibly set
+additional constraints on the properties of the accreting matter
+(e.g. its temperature and angular momentum) to further constrain the
+nature of the RIAF. A more thorough investigation of how accretion
+flows interact with the surface layers of neutron stars is therefore
+warranted.
+
+% \begin{itemize}
+% \item{In this paper have presented arguments to demonstrate that the spectrum seen in quiescent state of Cen X-4 is produced entirely from the surface of the star, meaning that the accretion flow itself is undetected}
+% \item{shown that this can set (modest) constraints on the radiative
+%     efficiency of a RIAF, especially if there is no strong magnetic
+%     field truncating the flow}
+% \item{Cen X-4 shows no pulsations down to a level of xxx, even when
+%     star is clearly detected {\tt Ale -- is it really possible to
+%       constrain pulsations in quiescence? You'll have to write what
+%       exactly the constraints are}, so not obvious that there is a
+%     magnetic field}
+% \item{No field in this source means at the level of $10^5$ G, which
+%     means that NSs span nine orders of magnitude in magnetic field
+%     strength}
+% \end{itemize}
+\bibliographystyle{mn2e}
+\bibliography{magbib}
+\label{lastpage}
+\end{document}

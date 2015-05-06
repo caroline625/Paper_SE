@@ -1,0 +1,101 @@
+\documentclass[useAMS,usenatbib]{mn2e} 
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{epsfig}
+\usepackage{times}
+\usepackage{natbib}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsbsy}
+\usepackage[T1]{fontenc} 
+% If your system has the AMS fonts version 2.0 installed, MN.sty can be
+% made to use them by uncommenting the line: %\AMStwofontstrue
+%
+% By doing this, you will be able to obtain upright Greek characters.
+% e.g. \umu, \upi etc.  See the section on 'Upright Greek characters' in
+% this guide for further information.
+%
+% If you are using AMS 2.0 fonts, bold math letters/symbols are availableF
+% at a larger range of sizes for NFSS release 1 and 2 (using \boldmath or
+% preferably \bmath).
+%\newcommand{\bhl}{\bf}
+%\newcommand{\ehl}{\rm}
+
+\newcommand{\bhl}{}
+\newcommand{\ehl}{}
+\newcommand{\bhm}{}
+\newcommand{\ehm}{}
+
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\rd}{{\rm d}}
+
+\newif\ifAMStwofonts
+%\AMStwofontstrue
+
+%%%%% AUTHORS - PLACE YOUR OWN MACROS HERE %%%%%
+\def\rin{$r_{\rm in}$}
+\def\rout{$r_{\rm out}$}
+\def\rc{$r_{\rm c}$}
+\def\del2r{$\Delta r_{\rm 2}$}
+\def\delr{$\Delta r$}
+\def\fbl{$\mathcal{F}_{\rm BL}$}
+\def\fflow{$\mathcal{F}_{\rm flow}$}
+\def\ddr{\frac{\partial}{\partial r}}
+\def\ddt{\frac{\partial}{\partial t}}
+\def\f{f}
+\def\aap{A\&A}
+\def\apj{ApJ}
+\def\aapr{A\&A Rev.}
+\def\apjl{ApJ}
+\def\mnras{MNRAS}
+\def\araa{ARA\&A}
+\def\aj{AJ}
+\def\qjras{QJRAS}
+\def\physrep{Phys. Rep.}
+\def\nat{Nature}
+\def\nar{New Astron. Rev.}
+\def\aaps{A\&A Supp.}
+\def\apss{Ap\&SS}  
+\def\planss{P\&SS} 
+\def\apjs{ApJS}
+\def\pra{Phys. Rev. A}
+\def\prb{Phys. Rev. B}
+\def\prc{Phys. Rev. B}
+\def\prd{Phys. Rev. D}
+\def\pasp{Publ. Astr. Soc. Pac.}
+\def\jcp{J. Chem. Phys.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{}
+\author[Caroline R.\ D'Angelo]
+       {C.\ R.\ D'Angelo}
+\date{\today}
+
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+\pubyear{2015}
+
+\begin{document}
+
+\maketitle
+\label{firstpage}
+\begin{abstract}
+\end{abstract}
+\begin{keywords}
+accretion, accretion discs -- MHD -- stars:
+-- stars: magnetic fields --
+stars:rotation
+\end{keywords}
+
+\section{Introduction}
+
+\begin{figure}
+ {\includegraphics[width=85mm]{.eps}}
+  \caption{\label{fig:} }
+\end{figure}
+
+\bibliographystyle{mn2e}
+\bibliography{magbib}
+\label{lastpage}
+\end{document}
